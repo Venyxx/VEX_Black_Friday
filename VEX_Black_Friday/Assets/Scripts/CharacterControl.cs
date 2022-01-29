@@ -47,6 +47,7 @@ public class CharacterControl : MonoBehaviour
     {
         //char initialize
         rigidbody2d = GetComponent<Rigidbody2D>();
+        Debug.Log("got rigidbody");
         //animator = GetComponent<Animator>();
         currentHealth = maximumHealth;
         //keyCount = false;
@@ -130,6 +131,7 @@ public class CharacterControl : MonoBehaviour
         position.y = position.y + speed * vertical * Time.deltaTime;
 
         rigidbody2d.MovePosition(position);
+        Debug.Log(position);
 
     }
 
