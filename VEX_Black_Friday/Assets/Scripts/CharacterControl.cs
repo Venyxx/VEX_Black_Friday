@@ -7,14 +7,14 @@ public class CharacterControl : MonoBehaviour
 {
     //char setup
     public float speed = 3.0f;
-    public int maximumHealth = 5;
+    public int maximumHealth = 200;
     public GameObject projectilePrefab;
     public int health { get { return currentHealth; } }
     int currentHealth;
     Rigidbody2D rigidbody2d;
     float horizontal;
     float vertical;
-    Animator animator;
+    //Animator animator;
     Vector2 lookDirection = new Vector2(1, 0);
 
     //after getting hit
@@ -47,7 +47,7 @@ public class CharacterControl : MonoBehaviour
     {
         //char initialize
         rigidbody2d = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
+        //animator = GetComponent<Animator>();
         currentHealth = maximumHealth;
         //keyCount = false;
 
@@ -77,9 +77,9 @@ public class CharacterControl : MonoBehaviour
             lookDirection.Normalize();
         }
 
-        animator.SetFloat("Look X", lookDirection.x);
-        animator.SetFloat("Look Y", lookDirection.y);
-        animator.SetFloat("Speed", move.magnitude);
+        //animator.SetFloat("Look X", lookDirection.x);
+        //animator.SetFloat("Look Y", lookDirection.y);
+        //animator.SetFloat("Speed", move.magnitude);
 
         if (isInvincible)
         {
