@@ -26,14 +26,17 @@ public class CharacterControl : MonoBehaviour
     public int count;
 
     //display
+    public static int score;
+    public static int scissors;
     public TextMeshProUGUI countText;
+    AudioSource audioSource;
     //public TextMeshProUGUI keyCountPrinting;
     public GameObject winningDialog;
     // public TextMeshProUGUI cogCountPrint;
 
 
     //convert to bool?
-   // public static bool keyCount;
+    // public static bool keyCount;
     public static int enemiesKilled;
 
     public static int winCondition = 0;
@@ -47,14 +50,15 @@ public class CharacterControl : MonoBehaviour
     {
         //char initialize
         rigidbody2d = GetComponent<Rigidbody2D>();
+        audioSource = GetComponent<AudioSource>();
         Debug.Log("got rigidbody");
         //animator = GetComponent<Animator>();
         currentHealth = maximumHealth;
         //keyCount = false;
 
         //UI printing
-      //  printing();
-      //  keyPrinting();
+        //  printing();
+        //  keyPrinting();
     }
 
 
@@ -62,9 +66,9 @@ public class CharacterControl : MonoBehaviour
     void Update()
     {
 
-      //  keyPrinting();
-       // printing();
-    
+        //  keyPrinting();
+        // printing();
+
 
         //character motion values
         horizontal = Input.GetAxis("Horizontal");
@@ -89,32 +93,52 @@ public class CharacterControl : MonoBehaviour
                 isInvincible = false;
         }
 
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            //Debug.Log("pressed E");
+            Launch();
+        }
+
+
+
     }
     //interactable objects
     public GameObject healthObject;
     //public GameObject varioiuspickup;
 
+    void Launch()
+    {
+        GameObject projectileObject = Instantiate(projectilePrefab, rigidbody2d.position + Vector2.up * 0.1f, Quaternion.identity);
+        Debug.Log(rigidbody2d.position);
+
+        Projectile projectile = projectileObject.GetComponent<Projectile>();
+        projectile.Launch(lookDirection, 300);
+        Debug.Log(lookDirection);
+        //animator.SetTrigger("Launch");
+
+        // PlaySound(throwSound);
+
+    }
+   public void addPoints(int input)
+    {
+        if (input == 1)
+        {
+            score += 15;
+        }
+        else if (input == 2)
+        {
+            score += 50;
+        }
+        else if (input == 3)
+        {
+            score += 100;
+        }
+    }
+
 
     public void printing()
     {
-        //we need to decide the numbers of points we need to switch levels and the maximum values that you can get on each level
-      /*  if (enemiesKilled == 6 && keyCount = true)
-        {
-            winCondition = 2;
-            Destroy(rigidbody2d);
-            Instantiate(winningDialog, rigidbody2d.transform);
-        }
-        else if (enemiesKilled == 5 && keyCount = true)
-        {
-            
-            winCondition = 1;
-
-
-
-
-
-        }
-        */
+//printing
     }
 
     public void keyPrinting()
@@ -131,7 +155,7 @@ public class CharacterControl : MonoBehaviour
         position.y = position.y + speed * vertical * Time.deltaTime;
 
         rigidbody2d.MovePosition(position);
-        Debug.Log(position);
+        
 
     }
 
@@ -156,6 +180,10 @@ public class CharacterControl : MonoBehaviour
             SceneManager.LoadScene("MainScene");
         }
 
+    }
+    public void PlaySound(AudioClip clip)
+    {
+        audioSource.PlayOneShot(clip);
     }
 
 }
