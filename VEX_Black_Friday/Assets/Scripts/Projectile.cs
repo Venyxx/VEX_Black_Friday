@@ -38,7 +38,7 @@ public class Projectile : MonoBehaviour
         {
            Debug.Log("detected collison with weakest enemy");
             //kills
-            //weakestEnemy.e1GotHit();
+            weakestEnemy.e1GotHit();
         }
 
         

@@ -49,6 +49,7 @@ public class EnemyOneControl : MonoBehaviour
         {
             player.ChangeHealth(-10);
             Debug.Log("Changed player health");
+            Debug.Log(player.currentHealth);
 
         }
     }
