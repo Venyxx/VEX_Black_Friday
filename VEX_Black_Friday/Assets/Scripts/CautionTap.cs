@@ -21,10 +21,7 @@ void OnCollisionEnter2D(Collision2D other)
 
         if (player != null)
         {
-            Debug.Log("detected cautiontape");
-            Destroy(gameObject);
-            CharacterControl.scissors --;
-            Debug.Log("scissors subtracted");
+            
         }
 
 }

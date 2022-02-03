@@ -17,8 +17,7 @@ public class HealthCollectible : MonoBehaviour
         if (controller != null)
         {
             Debug.Log("contact with health and character");
-            if (controller.currentHealth < controller.maximumHealth)
-            {
+            
                 //adds 50 health to character
                 controller.ChangeHealth(50);
                 //Instantiate(healthBurst, controller.transform.position, controller.transform.rotation);
@@ -29,7 +28,7 @@ public class HealthCollectible : MonoBehaviour
 
                 //controller.PlaySound(collectedClip);
 
-            }
+            
         }
 
     }

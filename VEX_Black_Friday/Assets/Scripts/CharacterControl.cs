@@ -9,7 +9,6 @@ public class CharacterControl : MonoBehaviour
     public float speed = 3.0f;
     public int maximumHealth = 200;
     public GameObject projectilePrefab;
-    //public int health { get { return currentHealth; } }
     public int currentHealth;
     Rigidbody2D rigidbody2d;
     float horizontal;
@@ -23,25 +22,20 @@ public class CharacterControl : MonoBehaviour
     float invincibleTimer;
 
 
-    public int count;
 
     //display
     public static int score;
     public static int scissors;
-    public TextMeshProUGUI countText;
-    AudioSource audioSource;
-    //public TextMeshProUGUI keyCountPrinting;
+    public TextMeshProUGUI scissorsDisplay;
+    public TextMeshProUGUI scorePrinting;
     public GameObject winningDialog;
-    // public TextMeshProUGUI cogCountPrint;
+    public TextMeshProUGUI healthText;
 
-
-    //convert to bool?
-    // public static bool keyCount;
-    public static int enemiesKilled;
-
-    public static int winCondition = 0;
-
-
+    //audio
+    AudioSource audioSource;
+    AudioClip throwSound;
+    AudioClip ambientSound;
+    AudioClip elevatorMusicSound;
 
 
 
@@ -54,12 +48,18 @@ public class CharacterControl : MonoBehaviour
         Debug.Log("got rigidbody");
         //animator = GetComponent<Animator>();
         currentHealth = maximumHealth;
-        Debug.Log("initial health:"  + currentHealth);
-        //keyCount = false;
+        scissors = 0;
+        Debug.Log("initial health:" + currentHealth);
+        
+        
 
-        //UI printing
-        //  printing();
-        //  keyPrinting();
+        //UI initial printing
+        healthPrintingMethod();
+        scorePrintingMethod();
+        scissorsPrinting();
+
+        //background audio
+        PlaySound(ambientSound);
     }
 
 
@@ -67,8 +67,10 @@ public class CharacterControl : MonoBehaviour
     void Update()
     {
 
-        //  keyPrinting();
-        // printing();
+        scorePrintingMethod();
+        healthPrintingMethod();
+        scissorsPrinting();
+        
 
 
         //character motion values
@@ -103,28 +105,27 @@ public class CharacterControl : MonoBehaviour
 
 
     }
-    //interactable objects
-    public GameObject healthObject;
-    //public GameObject varioiuspickup;
+
 
     void Launch()
     {
         GameObject projectileObject = Instantiate(projectilePrefab, rigidbody2d.position + Vector2.up * 0.1f, Quaternion.identity);
-        Debug.Log(rigidbody2d.position);
+        //Debug.Log(rigidbody2d.position);
 
         Projectile projectile = projectileObject.GetComponent<Projectile>();
         projectile.Launch(lookDirection, 300);
-        Debug.Log(lookDirection);
+        //Debug.Log(lookDirection);
         //animator.SetTrigger("Launch");
 
-        // PlaySound(throwSound);
+        PlaySound(throwSound);
 
     }
-   public void addPoints(int input)
+    public static void addPoints(int input)
     {
         if (input == 1)
         {
             score += 15;
+            //Debug.Log("added 15");
         }
         else if (input == 2)
         {
@@ -134,18 +135,26 @@ public class CharacterControl : MonoBehaviour
         {
             score += 100;
         }
+        else if (input == 4)
+        {
+            score += 30;
+        }
+
     }
 
 
-    public void printing()
+    public void healthPrintingMethod()
     {
-//printing
+        healthText.text = "Health: " + currentHealth.ToString();
     }
 
-    public void keyPrinting()
+    public void scorePrintingMethod()
     {
-        //key printing only matters if we have more than one key
-        //keyCountPrinting.text = "key count: " + keyCount.ToString() + "/3";
+        scorePrinting.text = "Score: " + score.ToString();
+    }
+    public void scissorsPrinting()
+    {
+        scissorsDisplay.text = "Scissors: " + scissors.ToString();
     }
 
     void FixedUpdate()
@@ -156,13 +165,17 @@ public class CharacterControl : MonoBehaviour
         position.y = position.y + speed * vertical * Time.deltaTime;
 
         rigidbody2d.MovePosition(position);
-        
+
 
     }
 
 
     public void ChangeHealth(int amount)
     {
+
+
+        currentHealth = Mathf.Clamp(currentHealth + amount, 0,1000000000);
+        currentHealth = currentHealth + amount;
         if (amount < 0)
         {
             if (isInvincible)
@@ -172,15 +185,26 @@ public class CharacterControl : MonoBehaviour
             invincibleTimer = timeInvincible;
 
         }
-        Debug.Log(currentHealth);
-        currentHealth = Mathf.Clamp(currentHealth + amount, 0, maximumHealth);
+
         if (currentHealth <= 0)
         {
             //should it go back to the menu at this point
             //display lose screen
-            SceneManager.LoadScene("MainScene");
+            //SceneManager.LoadScene("MainScene");
         }
 
+    }
+
+    void OnCollisionEnter2D (Collision2D other)
+    {
+        if (other.collider.tag == "wall" && scissors > 0)
+        {
+            //destroy
+            Debug.Log("detected cautiontape, in charact control");
+            Destroy(other.gameObject);
+            CharacterControl.scissors --;
+            Debug.Log("scissors subtracted");
+        }
     }
     public void PlaySound(AudioClip clip)
     {

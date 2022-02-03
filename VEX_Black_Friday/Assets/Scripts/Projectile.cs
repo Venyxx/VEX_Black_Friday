@@ -8,10 +8,12 @@ public class Projectile : MonoBehaviour
 
     //public int count = 0;
     Rigidbody2D projectileRB;
+    
 
     void Awake()
     {
         projectileRB = GetComponent<Rigidbody2D>();
+        
     }
 
     public void Launch(Vector2 direction, float force)
@@ -22,12 +24,15 @@ public class Projectile : MonoBehaviour
     void Update()
     {
         //destroy with distance        
-    if (transform.position.magnitude > 10000000.0f)
+    if (transform.position.magnitude > 1000.0f)
         {
             Destroy(gameObject);
         }
     }
-
+    public static void addPointsToScoreInMainScript (int input)
+    {
+        CharacterControl.addPoints(input);
+    }
     //int fixHim = 0;
     void OnCollisionEnter2D(Collision2D other)
     {
@@ -37,6 +42,8 @@ public class Projectile : MonoBehaviour
         if (weakestEnemy != null)
         {
            Debug.Log("detected collison with weakest enemy");
+           addPointsToScoreInMainScript(1);
+
             //kills
             weakestEnemy.e1GotHit();
         }
@@ -64,7 +71,7 @@ public class Projectile : MonoBehaviour
         */
 
 
-        //Destroy(gameObject);
+        Destroy(gameObject);
     }
 
 }
