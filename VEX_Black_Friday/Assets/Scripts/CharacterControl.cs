@@ -33,19 +33,19 @@ public class CharacterControl : MonoBehaviour
 
     //audio
     AudioSource audioSource;
-    AudioClip throwSound;
-    AudioClip ambientSound;
-    AudioClip elevatorMusicSound;
+   public AudioClip throwSound;
+    public AudioClip ambientSound;
+    public AudioClip elevatorMusicSound;
 
 
 
     // Start is called before the first frame update
     void Start()
     {
-        //char initialize
+        //char initialize-------------
         rigidbody2d = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
-        Debug.Log("got rigidbody");
+        //Debug.Log("got rigidbody");
         //animator = GetComponent<Animator>();
         currentHealth = maximumHealth;
         scissors = 0;
@@ -53,12 +53,12 @@ public class CharacterControl : MonoBehaviour
         
         
 
-        //UI initial printing
+        //UI initial printing--------------
         healthPrintingMethod();
         scorePrintingMethod();
         scissorsPrinting();
 
-        //background audio
+        //background audio-----------------
         PlaySound(ambientSound);
     }
 
@@ -73,7 +73,7 @@ public class CharacterControl : MonoBehaviour
         
 
 
-        //character motion values
+        //character motion values----------
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
 
@@ -159,7 +159,7 @@ public class CharacterControl : MonoBehaviour
 
     void FixedUpdate()
     {
-        //character motion speed values
+        //character motion speed values-------------
         Vector2 position = rigidbody2d.position;
         position.x = position.x + speed * horizontal * Time.deltaTime;
         position.y = position.y + speed * vertical * Time.deltaTime;
@@ -199,7 +199,7 @@ public class CharacterControl : MonoBehaviour
     {
         if (other.collider.tag == "wall" && scissors > 0)
         {
-            //destroy
+            //destroy----------------
             Debug.Log("detected cautiontape, in charact control");
             Destroy(other.gameObject);
             CharacterControl.scissors --;
