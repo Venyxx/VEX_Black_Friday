@@ -13,7 +13,7 @@ public class CharacterControl : MonoBehaviour
     Rigidbody2D rigidbody2d;
     float horizontal;
     float vertical;
-    //Animator animator;
+    Animator animator;
     Vector2 lookDirection = new Vector2(1, 0);
 
     //after getting hit
@@ -46,7 +46,7 @@ public class CharacterControl : MonoBehaviour
         rigidbody2d = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
         //Debug.Log("got rigidbody");
-        //animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
         currentHealth = maximumHealth;
         scissors = 0;
         Debug.Log("initial health:" + currentHealth);
@@ -85,9 +85,9 @@ public class CharacterControl : MonoBehaviour
             lookDirection.Normalize();
         }
 
-        //animator.SetFloat("Look X", lookDirection.x);
-        //animator.SetFloat("Look Y", lookDirection.y);
-        //animator.SetFloat("Speed", move.magnitude);
+        animator.SetFloat("Look X", lookDirection.x);
+        animator.SetFloat("Look Y", lookDirection.y);
+        animator.SetFloat("Speed", move.magnitude);
 
         if (isInvincible)
         {
