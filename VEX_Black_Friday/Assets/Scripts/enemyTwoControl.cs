@@ -4,27 +4,20 @@ using UnityEngine;
 
 public class enemyTwoControl : MonoBehaviour
 {
-public float speed;
+    public float speed;
     int enemyTwoHealth;
     Rigidbody2D rb;
     Animator animator;
     private Transform player;
-    public float enemyspeed = 3f;
-    
-
-    public Animation enemytwoup;
-    public Animation enemytwoleft;
-    public Animation enemytworight;
-    public Animation enemytwodown;
-    public Animation enemytwoidle;
-
-     float throwTimer = 4;
-     private bool canThrow = true;
- public GameObject projectilePrefab;
- Vector2 lookDirection = new Vector2(1, 0);
 
 
-    //bool dead = false;
+
+
+    float throwTimer = 4;
+    private bool canThrow = true;
+    public GameObject projectilePrefab;
+    Vector2 lookDirection = new Vector2(1, 0);
+
 
     // Start is called before the first frame update
     void Start()
@@ -50,43 +43,44 @@ public float speed;
         {
             //check for x comparison
             //is the player above or below 
-             //check if left or right
-                if (transform.position.x < player.position.x)
-                {
-                   animator.SetFloat("Look X", 0);
-                   animator.SetFloat("Look Y", 1);
-                   canThrow = false;
-                    
-                   // Debug.Log("the enemy faces up");
-                }
-                else if (transform.position.x > player.position.x)
-                {
-                    animator.SetFloat("Look X", -1);
-                   animator.SetFloat("Look Y", 0);
-                    //Debug.Log("enemy is facing left");
-                    canThrow = true;
+            //check if left or right
+            if (transform.position.x < player.position.x)
+            {
+                animator.SetFloat("Look X", 0);
+                animator.SetFloat("Look Y", 1);
+                canThrow = false;
 
-                }
-            
-                
-            
-            
-        }else if ((transform.position.x - player.position.x) < (transform.position.y - player.position.y))
+                // Debug.Log("the enemy faces up");
+            }
+            else if (transform.position.x > player.position.x)
+            {
+                animator.SetFloat("Look X", -1);
+                animator.SetFloat("Look Y", 0);
+                //Debug.Log("enemy is facing left");
+                canThrow = true;
+
+            }
+
+
+
+
+        }
+        else if ((transform.position.x - player.position.x) < (transform.position.y - player.position.y))
         {
 
             if (transform.position.y > player.position.y)
             {
                 animator.SetFloat("Look X", 0);
-                   animator.SetFloat("Look Y", -1);
+                animator.SetFloat("Look Y", -1);
                 ///Debug.Log ("enemy is facing down");
                 canThrow = false;
             }
             else if (transform.position.y < player.position.y)
             {
-               animator.SetFloat("Look X", 1);
-                   animator.SetFloat("Look Y", 0);
-               // Debug.Log("enemy is facing right");
-               canThrow = true;
+                animator.SetFloat("Look X", 1);
+                animator.SetFloat("Look Y", 0);
+                // Debug.Log("enemy is facing right");
+                canThrow = true;
             }
 
         }
@@ -96,8 +90,22 @@ public float speed;
             Destroy(gameObject);
             //despawn
         }
+        /*throwTimer -= Time.deltaTime;
+        if (throwTimer <= 0 && canThrow == true)
+        {
+            lookDirection.Normalize();
+            GameObject projectileObject = Instantiate(projectilePrefab, rb.position + Vector2.up * 0.1f, Quaternion.identity);
 
-        
+
+            Projectile projectile = projectileObject.GetComponent<Projectile>();
+            projectile.Launch(lookDirection, 300);
+
+            animator.SetTrigger("Launch");
+            throwTimer = 4;
+            canThrow = false;
+            Debug.Log("reset throw timer" + throwTimer);
+        }*/
+
 
     }
 
@@ -112,22 +120,12 @@ public float speed;
 
         Vector2 position = rb.position;
 
-        throwTimer -= Time.deltaTime;
-        if (throwTimer < 0 && canThrow == true)
-        {
-            lookDirection.Normalize();
-            GameObject projectileObject = Instantiate(projectilePrefab, rb.position + Vector2.up * 0.1f, Quaternion.identity);
-        
 
-        Projectile projectile = projectileObject.GetComponent<Projectile>();
-        projectile.Launch(lookDirection, 300);
-        
-        animator.SetTrigger("Launch");
-            throwTimer = 4;
-        }
     }
-   
-   
+
+
+
+
     void OnCollisionEnter2D(Collision2D other)
     {
         CharacterControl player = other.gameObject.GetComponent<CharacterControl>();
@@ -135,8 +133,8 @@ public float speed;
         if (player != null)
         {
             player.ChangeHealth(-10);
-            Debug.Log("Changed player health");
-            
+            Debug.Log("Changed player health 10");
+
 
         }
     }
@@ -145,8 +143,8 @@ public float speed;
     {
         enemyTwoHealth -= 1;
         //Debug.Log("made it to e1gothit");
-        
-        
+
+
     }
 }
 

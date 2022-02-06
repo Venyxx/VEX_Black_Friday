@@ -49,26 +49,24 @@ public class Projectile : MonoBehaviour
         }
 
         
-        /*FastEnemyController midStrengthEnemy = other.collider.GetComponent<FastEnemyController>();
+        enemyTwoControl midStrengthEnemy = other.collider.GetComponent<enemyTwoControl>();
         if (midStrengthEnemy != null)
         {
             
-            RubyController.storing++;
-
-
-
-            midStrengthEnemy.Fix();
+            addPointsToScoreInMainScript(2);
+            midStrengthEnemy.e2GotHit();
+            
         }
 
-        EnemyAIController StrongestEnemy = other.collider.GetComponent<EnemyAIController>();
+        enemyThreeControl StrongestEnemy = other.collider.GetComponent<enemyThreeControl>();
         if (StrongestEnemy != null)
         {
-            fixHim++;
-            if (fixHim == 2) { Destroy(StrongestEnemy); }
-
+           
+            addPointsToScoreInMainScript(3);
+            StrongestEnemy.e3GotHit();
 
         }
-        */
+    
 
 
         Destroy(gameObject);
