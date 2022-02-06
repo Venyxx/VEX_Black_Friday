@@ -108,7 +108,7 @@ MonoBehaviour:
   scorePrinting: {fileID: 0}
   winningDialog: {fileID: 0}
   healthText: {fileID: 0}
-  throwSound: {fileID: 8300000, guid: f27fcc0026645de498e8aef0d5429a4d, type: 3}
+  throwSound: {fileID: 8300000, guid: 1b184a57fd4ffb143b2321bf864b5976, type: 3}
   ambientSound: {fileID: 8300000, guid: 2bd24584581c2384e975d5a74f2f85a2, type: 3}
   elevatorMusicSound: {fileID: 8300000, guid: 7b70f4cf9811dd047adc5267c448c1e8, type: 3}
 --- !u!50 &6775376877636528364
