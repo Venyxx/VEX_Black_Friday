@@ -11,6 +11,7 @@ public class enemySpawnerControl : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     public Sprite firstDepleteSprite;
     public Sprite secondDepleteSprite;
+    private bool canSpawn = true;
 
     void Start()
     {
@@ -21,13 +22,15 @@ public class enemySpawnerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (health == 0)
+        if (health <= 0)
         {
-            Destroy(gameObject);
+            //COMEBAKK HERRERE
         }
-        else if (health == 1)
+        else if (health <= 1)
         {
             spriteRenderer.sprite = secondDepleteSprite;
+            canSpawn = false;
+            
         }
         else if (health == 2)
         {
@@ -36,6 +39,7 @@ public class enemySpawnerControl : MonoBehaviour
         spawnTimer -= Time.deltaTime;
         if (spawnTimer < 0)
         {
+            if(canSpawn == true)
             Instantiate(enemy, gameObject.transform.position, gameObject.transform.rotation);
             spawnTimer = 2;
         }

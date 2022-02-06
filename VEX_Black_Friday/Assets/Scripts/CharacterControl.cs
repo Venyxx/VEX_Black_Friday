@@ -115,7 +115,7 @@ public class CharacterControl : MonoBehaviour
         Projectile projectile = projectileObject.GetComponent<Projectile>();
         projectile.Launch(lookDirection, 300);
         //Debug.Log(lookDirection);
-        //animator.SetTrigger("Launch");
+        animator.SetTrigger("Launch");
 
         PlaySound(throwSound);
 

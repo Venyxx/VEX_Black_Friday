@@ -10,6 +10,13 @@ public class EnemyOneControl : MonoBehaviour
     Animator animator;
     private Transform player;
     public float enemyspeed = 3f;
+    
+
+    public Animation enemyoneup;
+    public Animation enemyoneleft;
+    public Animation enemyoneright;
+    public Animation enemyonedown;
+    public Animation enemyoneidle;
 
 
     //bool dead = false;
@@ -41,13 +48,15 @@ public class EnemyOneControl : MonoBehaviour
              //check if left or right
                 if (transform.position.x < player.position.x)
                 {
-                    //moving to the right
+                   animator.SetFloat("Look X", 0);
+                   animator.SetFloat("Look Y", 1);
                     
                    // Debug.Log("the enemy faces up");
                 }
                 else if (transform.position.x > player.position.x)
                 {
-                    //the enemy is moving left
+                    animator.SetFloat("Look X", -1);
+                   animator.SetFloat("Look Y", 0);
                     //Debug.Log("enemy is facing left");
                 }
             
@@ -59,10 +68,14 @@ public class EnemyOneControl : MonoBehaviour
 
             if (transform.position.y > player.position.y)
             {
+                animator.SetFloat("Look X", 0);
+                   animator.SetFloat("Look Y", -1);
                 ///Debug.Log ("enemy is facing down");
             }
             else if (transform.position.y < player.position.y)
             {
+               animator.SetFloat("Look X", 1);
+                   animator.SetFloat("Look Y", 0);
                // Debug.Log("enemy is facing right");
             }
 
@@ -74,9 +87,7 @@ public class EnemyOneControl : MonoBehaviour
             //despawn
         }
 
-        //animation controller
-        //enemy look direction x = -1 or 1 then change animation tree
-        //else if 
+        
 
     }
 
@@ -108,8 +119,8 @@ public class EnemyOneControl : MonoBehaviour
     public void e1GotHit()
     {
         enemyOneHealth -= 1;
-        Debug.Log("made it to e1gothit");
-        //need to figure out how to increment up more
+        //Debug.Log("made it to e1gothit");
+        
         
     }
 }

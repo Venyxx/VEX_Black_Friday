@@ -22,7 +22,7 @@ public class ExitDoor : MonoBehaviour
         if (other.collider.tag == "Player")
         {
             //Switches to win screen
-            SceneManager.LoadScene("LevelOneWinScreen");
+            other.transform.Translate(5f,8f,0);
             
         }
     }
