@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5698078431358500150}
   - component: {fileID: 5698078431358500151}
   - component: {fileID: 5698078431358500152}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: KarenEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}

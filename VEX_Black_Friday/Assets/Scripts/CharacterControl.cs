@@ -6,15 +6,16 @@ using UnityEngine.SceneManagement;
 public class CharacterControl : MonoBehaviour
 {
     //char setup
-    public float speed = 3.0f;
-    public int maximumHealth = 200;
+    public float speed;
+    public int maximumHealth;
     public GameObject projectilePrefab;
-    public int currentHealth;
+    public static int currentHealth;
     Rigidbody2D rigidbody2d;
     float horizontal;
     float vertical;
     Animator animator;
     Vector2 lookDirection = new Vector2(1, 0);
+    
 
     //after getting hit
     public float timeInvincible = 2.0f;
@@ -33,9 +34,11 @@ public class CharacterControl : MonoBehaviour
 
     //audio
     AudioSource audioSource;
-   public AudioClip throwSound;
+    public AudioClip throwSound;
     public AudioClip ambientSound;
     public AudioClip elevatorMusicSound;
+    public AudioClip healthGrab;
+    public AudioClip scissorsSound;
 
 
 
@@ -43,23 +46,25 @@ public class CharacterControl : MonoBehaviour
     void Start()
     {
         //char initialize-------------
+        
+        
         rigidbody2d = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
         //Debug.Log("got rigidbody");
         animator = GetComponent<Animator>();
         currentHealth = maximumHealth;
         scissors = 0;
-        Debug.Log("initial health:" + currentHealth);
-        
-        
+        //Debug.Log("initial health:" + currentHealth);
+
+
 
         //UI initial printing--------------
         healthPrintingMethod();
         scorePrintingMethod();
         scissorsPrinting();
 
-        //background audio-----------------
-        PlaySound(ambientSound);
+        
+
     }
 
 
@@ -70,7 +75,7 @@ public class CharacterControl : MonoBehaviour
         scorePrintingMethod();
         healthPrintingMethod();
         scissorsPrinting();
-        
+
 
 
         //character motion values----------
@@ -96,9 +101,9 @@ public class CharacterControl : MonoBehaviour
                 isInvincible = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            //Debug.Log("pressed E");
+            //Debug.Log("pressed space");
             Launch();
         }
 
@@ -173,8 +178,18 @@ public class CharacterControl : MonoBehaviour
     public void ChangeHealth(int amount)
     {
 
-
-        currentHealth = Mathf.Clamp(currentHealth + amount, 0,1000000000);
+        if (amount == 50)
+        {
+            PlaySound(healthGrab);
+        }
+        if (currentHealth <= 0)
+        {
+            //should it go back to the menu at this point
+            //display lose screen
+            Debug.Log("noticed health too low");
+            SceneManager.LoadScene("Lose Screen");
+        }
+        currentHealth = Mathf.Clamp(currentHealth + amount, 0, 1000000000);
         currentHealth = currentHealth + amount;
         if (amount < 0)
         {
@@ -186,25 +201,25 @@ public class CharacterControl : MonoBehaviour
 
         }
 
-        if (currentHealth <= 0)
-        {
-            //should it go back to the menu at this point
-            //display lose screen
-            //SceneManager.LoadScene("MainScene");
-        }
+        
 
     }
 
-    void OnCollisionEnter2D (Collision2D other)
+    void OnCollisionEnter2D(Collision2D other)
     {
         if (other.collider.tag == "wall" && scissors > 0)
         {
             //destroy----------------
             Debug.Log("detected cautiontape, in charact control");
             Destroy(other.gameObject);
-            CharacterControl.scissors --;
+            CharacterControl.scissors--;
             Debug.Log("scissors subtracted");
         }
+        else if (other.collider.tag == "scissors")
+        {
+            PlaySound(scissorsSound);
+        }
+        
     }
     public void PlaySound(AudioClip clip)
     {

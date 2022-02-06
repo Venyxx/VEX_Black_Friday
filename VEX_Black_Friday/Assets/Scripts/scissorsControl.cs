@@ -5,6 +5,7 @@ using UnityEngine;
 public class scissorsControl : MonoBehaviour
 {
     // Start is called before the first frame update
+    
     void Start()
     {
         
@@ -20,8 +21,10 @@ public class scissorsControl : MonoBehaviour
         if (other.collider.tag == "Player")
         {
             CharacterControl.scissors ++;
+            
             Debug.Log("Added a scissor");
             Destroy(gameObject);
         }
     }
+    
 }
