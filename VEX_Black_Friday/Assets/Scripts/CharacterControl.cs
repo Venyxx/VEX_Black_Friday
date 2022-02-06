@@ -26,7 +26,7 @@ public class CharacterControl : MonoBehaviour
 
     //display
     public static int score;
-    public static int scissors;
+    public static int scissors = 0;
     public TextMeshProUGUI scissorsDisplay;
     public TextMeshProUGUI scorePrinting;
     public GameObject winningDialog;
@@ -41,6 +41,8 @@ public class CharacterControl : MonoBehaviour
     public AudioClip scissorsSound;
 
 
+    public static int sceneCounter = 1;
+
 
     // Start is called before the first frame update
     void Start()
@@ -52,8 +54,10 @@ public class CharacterControl : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         //Debug.Log("got rigidbody");
         animator = GetComponent<Animator>();
+        
+        if(sceneCounter <= 1)
         currentHealth = maximumHealth;
-        scissors = 0;
+        
         //Debug.Log("initial health:" + currentHealth);
 
 

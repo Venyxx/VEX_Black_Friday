@@ -12,19 +12,19 @@ public class characterDecider : MonoBehaviour
     
     void Start()
     {
-        if(GoToGame.trueIfYouSelectShopper == true)
+        if(GoToGame.trueIfYouSelectShopper == 1)
         {
             //this will choose the shopper enemy
             Destroy (karenPlayerSelected);
             Destroy (karencamera);
-            Debug.Log("deleted 1");
+            Debug.Log("deleted karen");
             Destroy(gameObject);
         }
         else 
         {
             Destroy (shopperPlayerSelected);
             Destroy (shoppercamera);
-            Debug.Log("deleted 2");
+            Debug.Log("deleted shopper");
             Destroy(gameObject);
         }
     }

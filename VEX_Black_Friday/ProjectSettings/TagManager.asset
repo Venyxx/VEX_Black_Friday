@@ -8,6 +8,8 @@ TagManager:
   - wall
   - scissors
   - exit
+  - audiosource
+  - Music
   layers:
   - Default
   - TransparentFX

@@ -83,7 +83,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!61 &9118506784972267303
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -122,7 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c23a852777248424d8169b44dbddcfe0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 307068345938054783, guid: 50c597ddde963114bb0e43f2539670ae, type: 3}
-  spriteRenderer: {fileID: 0}
-  firstDepleteSprite: {fileID: 0}
-  secondDepleteSprite: {fileID: 0}
+  enemy: {fileID: 8373186977057552910, guid: 5a18a95990ff49d4a96d81e665f3b5f7, type: 3}
+  spriteRenderer: {fileID: 9118506784972267298}
+  firstDepleteSprite: {fileID: -793033183995957002, guid: e393c5c46f3504847a189597c189dd2f, type: 3}
+  secondDepleteSprite: {fileID: 5286118781289921110, guid: e393c5c46f3504847a189597c189dd2f, type: 3}

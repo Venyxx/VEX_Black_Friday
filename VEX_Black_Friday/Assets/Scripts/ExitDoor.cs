@@ -22,7 +22,8 @@ public class ExitDoor : MonoBehaviour
         if (other.collider.tag == "Player")
         {
             //Switches to win screen
-            other.transform.Translate(5f,8f,0);
+            SceneManager.LoadScene("BF Level 2");
+            CharacterControl.sceneCounter++;
             
         }
     }
