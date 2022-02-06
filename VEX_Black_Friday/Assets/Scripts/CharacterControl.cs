@@ -60,6 +60,7 @@ public class CharacterControl : MonoBehaviour
 
         //background audio-----------------
         PlaySound(ambientSound);
+        PlaySound(elevatorMusicSound);
     }
 
 
