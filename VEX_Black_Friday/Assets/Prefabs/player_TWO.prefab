@@ -75,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -7072357003790033413, guid: fdb22c3534b5d1b4395eb19e126f0124, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -119,13 +119,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2.5
-  maximumHealth: 250
+  maximumHealth: 5000
   projectilePrefab: {fileID: 5256771820914386222, guid: d773ad2e2ecf24a48a4a47798c831094, type: 3}
   timeInvincible: 2
   scissorsDisplay: {fileID: 0}
   scorePrinting: {fileID: 0}
   winningDialog: {fileID: 0}
   healthText: {fileID: 0}
+  loser: {fileID: 3317471443820541163, guid: 23300f0a2091f1c439e18b50a8acaf68, type: 3}
   throwSound: {fileID: 8300000, guid: 241091456a0f71549aa960e8c83adaae, type: 3}
   ambientSound: {fileID: 8300000, guid: df43ccc25ea5c1b4abf0e53a49925fea, type: 3}
   elevatorMusicSound: {fileID: 8300000, guid: b585e513ae3a7d84da29d4dc6a6ba8d0, type: 3}

@@ -21,6 +21,8 @@ public class CharacterControl : MonoBehaviour
     public float timeInvincible = 2.0f;
     bool isInvincible;
     float invincibleTimer;
+    float loserTimer = 2;
+
 
 
 
@@ -31,6 +33,7 @@ public class CharacterControl : MonoBehaviour
     public TextMeshProUGUI scorePrinting;
     public GameObject winningDialog;
     public TextMeshProUGUI healthText;
+    public TextMeshProUGUI loser;
 
     //audio
     AudioSource audioSource;
@@ -110,7 +113,14 @@ public class CharacterControl : MonoBehaviour
             //Debug.Log("pressed space");
             Launch();
         }
-
+         if (Input.GetKeyDown(KeyCode.Escape))
+         {           
+            Debug.Log("notice esc");
+            //Instantiate(loser, rigidbody2d.position + Vector2.up * 0.1f, Quaternion.identity);
+            // loserTimer -= Time.deltaTime;
+            // if(loserTimer < 0)
+             SceneManager.LoadScene("Lose Screen");
+         }
 
 
     }
@@ -229,5 +239,7 @@ public class CharacterControl : MonoBehaviour
     {
         audioSource.PlayOneShot(clip);
     }
+
+
 
 }

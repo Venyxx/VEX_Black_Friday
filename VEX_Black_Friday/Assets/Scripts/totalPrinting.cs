@@ -9,7 +9,7 @@ public class totalPrinting : MonoBehaviour
     public TextMeshProUGUI totalText;
     void Start()
     {
-        totalText.text = "Total:" + CharacterControl.score.ToString();
+        totalText.text = "Total: $" + CharacterControl.score.ToString();
     }
 
     

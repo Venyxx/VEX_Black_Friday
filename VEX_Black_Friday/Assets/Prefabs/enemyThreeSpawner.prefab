@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 3508493986597456510, guid: b07bc0bcc4da01042846e256c2c4cb99, type: 3}
-  spriteRenderer: {fileID: 0}
+  spriteRenderer: {fileID: 2527215874405438642}
   firstDepleteSprite: {fileID: -7010853171916480176, guid: e393c5c46f3504847a189597c189dd2f, type: 3}
   secondDepleteSprite: {fileID: 1248431376424649952, guid: e393c5c46f3504847a189597c189dd2f, type: 3}
 --- !u!61 &4513751060046361015

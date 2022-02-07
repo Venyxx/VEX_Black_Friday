@@ -15,7 +15,7 @@ public class enemyThreeSpawnConrtol : MonoBehaviour
 
     void Start()
     {
-        health = 6;
+        health = 4;
         spawnTimer = 12;
     }
 

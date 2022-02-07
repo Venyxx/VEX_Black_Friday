@@ -10,6 +10,8 @@ public class toMenu : MonoBehaviour
     public void toMenuScript ()
     {
         CharacterControl.sceneCounter = 0;
+        CharacterControl.score = 0;
+        CharacterControl.scissors = 0;
         GameObject musicplayer = GameObject.FindGameObjectWithTag("audiosource");
         AudioSource audioSource = musicplayer.GetComponent<AudioSource>();
         audioSource.PlayOneShot(soundfx);

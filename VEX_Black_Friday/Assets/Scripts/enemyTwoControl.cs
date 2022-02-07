@@ -28,7 +28,7 @@ public class enemyTwoControl : MonoBehaviour
         enemyTwoHealth = 2;
     }
     // Update is called once per frame
-    void Update()
+   void Update()
     {
         //movement
         if (Vector2.Distance(transform.position, player.position) > 0f)
@@ -90,22 +90,8 @@ public class enemyTwoControl : MonoBehaviour
             Destroy(gameObject);
             //despawn
         }
-        /*throwTimer -= Time.deltaTime;
-        if (throwTimer <= 0 && canThrow == true)
-        {
-            lookDirection.Normalize();
-            GameObject projectileObject = Instantiate(projectilePrefab, rb.position + Vector2.up * 0.1f, Quaternion.identity);
-
-
-            Projectile projectile = projectileObject.GetComponent<Projectile>();
-            projectile.Launch(lookDirection, 300);
-
-            animator.SetTrigger("Launch");
-            throwTimer = 4;
-            canThrow = false;
-            Debug.Log("reset throw timer" + throwTimer);
-        }*/
-
+        
+    
 
     }
 
@@ -119,6 +105,22 @@ public class enemyTwoControl : MonoBehaviour
         }
 
         Vector2 position = rb.position;
+        throwTimer -= Time.deltaTime;
+        if (throwTimer < 0 && canThrow == true)
+        {
+            lookDirection.Normalize();
+            GameObject projectileObject = Instantiate(projectilePrefab, rb.position + Vector2.up * 0.1f, Quaternion.identity);
+
+
+            enemyProjectile projectileEnemy = projectileObject.GetComponent<enemyProjectile>();
+            projectileEnemy.Launch(lookDirection, 300);
+
+            animator.SetTrigger("Launch");
+            throwTimer = 4;
+            canThrow = false;
+            //Debug.Log("reset throw timer" + throwTimer);
+        }
+
 
 
     }
@@ -138,6 +140,11 @@ public class enemyTwoControl : MonoBehaviour
 
         }
     }
+
+
+
+
+
 
     public void e2GotHit()
     {
