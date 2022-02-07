@@ -90,7 +90,7 @@ public class enemyTwoControl : MonoBehaviour
             Destroy(gameObject);
             //despawn
         }
-        /*throwTimer -= Time.deltaTime;
+        throwTimer -= Time.deltaTime;
         if (throwTimer <= 0 && canThrow == true)
         {
             lookDirection.Normalize();
@@ -104,7 +104,7 @@ public class enemyTwoControl : MonoBehaviour
             throwTimer = 4;
             canThrow = false;
             Debug.Log("reset throw timer" + throwTimer);
-        }*/
+        }
 
 
     }

@@ -58,6 +58,7 @@ public class CharacterControl : MonoBehaviour
         if(sceneCounter <= 1)
         currentHealth = maximumHealth;
         
+        
         //Debug.Log("initial health:" + currentHealth);
 
 

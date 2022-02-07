@@ -75,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 8298109190431527075, guid: 2605ad014b9b89e4bb896b37b7ce3d7f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  maximumHealth: 200
+  maximumHealth: 400
   projectilePrefab: {fileID: 6583074679877580356, guid: 3db580fca42705945886d12e8196cad9, type: 3}
   timeInvincible: 2
   scissorsDisplay: {fileID: 0}
